@@ -2,37 +2,43 @@
 using System.Collections;
 
 public class controller : MonoBehaviour {
-    public float speed = 2;
-	// Use this for initialization
-	void Start () {
-	
-	}
+    public float movementSpeed = 10;
+    public float turningSpeed = 60;
+    private int a = 0;
+    // Use this for initialization
+    void Start() {
+
+    }
     void OnCollisionExit(Collision col)
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+        a = 0;
     }
-        // Update is called once per frame
-    void Update () {
+    void OnCollisionEnter(Collision col)
+    {
+        a = 1;
+    }
+    // Update is called once per frame
+    void Update() {
         moove();
     }
 
 
     void moove()
     {
-        float z = Input.GetAxis("Vertical");
-        float x = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime;
+        if (a == 0)
+            transform.Rotate(0, horizontal, 0);
 
-        Vector3 offset = new Vector3(x, 0.0f, z) * speed;
+        float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        transform.Translate(0, 0, vertical);
 
-        transform.position += offset * Time.deltaTime;
-
-
+        Vector3 offset = new Vector3(horizontal, 0.0f, vertical) * movementSpeed;
         GetComponent<Animator>().SetFloat(
               "speed", offset.magnitude
           );
-        if (x != 0 || z != 0)
-        {
-            transform.rotation = Quaternion.LookRotation(offset.normalized);
-        }
+
     }
+
+   
 }

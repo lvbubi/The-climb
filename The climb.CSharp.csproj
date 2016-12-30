@@ -63,8 +63,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BoxScript.cs" />
+    <Compile Include="Assets\Camera\DungeonCamera.cs" />
+    <Compile Include="Assets\Camera\FollowCamera.cs" />
+    <Compile Include="Assets\Camera\LookAtCamera.cs" />
+    <Compile Include="Assets\Camera\MouseAimCamera.cs" />
+    <Compile Include="Assets\LoadMap.cs" />
+    <Compile Include="Assets\Map\BoxScript.cs" />
     <Compile Include="Assets\controller.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Palya.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

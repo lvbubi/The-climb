@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class LoadMap : MonoBehaviour {
     public GameObject box;
@@ -9,6 +10,7 @@ public class LoadMap : MonoBehaviour {
     public GameObject goal;
     public GameObject wall;
     private GameObject[] boxes;
+    public Text BoxCounter;
     public int countOfBoxes = 0;
 	// Use this for initialization
 	void Start () {
@@ -57,6 +59,7 @@ public class LoadMap : MonoBehaviour {
             }
         }
         boxes = GameObject.FindGameObjectsWithTag("Box");
+        
 
     }
 	
@@ -71,5 +74,7 @@ public class LoadMap : MonoBehaviour {
         if (i == boxes.Length)
             Debug.Log("JÁTÉK VÉGE");
 
-	}
+        BoxCounter.text = "Boxes Back: " + (boxes.Length - i);
+
+    }
 }

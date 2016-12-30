@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class controller : MonoBehaviour {
-    public float movementSpeed = 10;
-    public float turningSpeed = 60;
     private int a = 0;
+    public float moveSpeed = 0;
+    public float turnSpeed = 0;
     // Use this for initialization
     void Start() {
 
@@ -26,19 +26,30 @@ public class controller : MonoBehaviour {
 
     void moove()
     {
-        float horizontal = Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime;
-        if (a == 0)
-            transform.Rotate(0, horizontal, 0);
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            GetComponent<Animator>().SetFloat("speed", 10);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
+            GetComponent<Animator>().SetFloat("speed", 10);
+        }
 
-        float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
-        transform.Translate(0, 0, vertical);
+        if (Input.GetKey(KeyCode.A))
+            transform.Rotate(Vector3.up, -turnSpeed* Time.deltaTime);
 
-        Vector3 offset = new Vector3(horizontal, 0.0f, vertical) * movementSpeed;
-        GetComponent<Animator>().SetFloat(
-              "speed", offset.magnitude
-          );
+        if (Input.GetKey(KeyCode.D))
+            transform.Rotate(Vector3.up, turnSpeed* Time.deltaTime);
+
+
+        if (Input.GetKeyUp(KeyCode.W))
+            GetComponent<Animator>().SetFloat("speed", 0);
+        if (Input.GetKeyUp(KeyCode.S))
+            GetComponent<Animator>().SetFloat("speed", 0);
 
     }
 
-   
+
 }

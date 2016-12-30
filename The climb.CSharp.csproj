@@ -67,8 +67,10 @@
     <Compile Include="Assets\Camera\FollowCamera.cs" />
     <Compile Include="Assets\Camera\LookAtCamera.cs" />
     <Compile Include="Assets\Camera\MouseAimCamera.cs" />
+    <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\LoadMap.cs" />
     <Compile Include="Assets\Map\BoxScript.cs" />
+    <Compile Include="Assets\ThirdPersonCamera.cs" />
     <Compile Include="Assets\controller.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -49,13 +49,12 @@
      <Compile Include="Assets\Camera\FollowCamera.cs" />
      <Compile Include="Assets\Camera\LookAtCamera.cs" />
      <Compile Include="Assets\Camera\MouseAimCamera.cs" />
+     <Compile Include="Assets\Camera\ThirdPersonCamera.cs" />
      <Compile Include="Assets\CameraController.cs" />
-     <Compile Include="Assets\LoadMap.cs" />
      <Compile Include="Assets\Map\BoxScript.cs" />
-     <Compile Include="Assets\Scripts\BoxScript.cs" />
+     <Compile Include="Assets\Scripts\LoadMap.cs" />
      <Compile Include="Assets\Scripts\controller.cs" />
      <Compile Include="Assets\Scripts\menuController.cs" />
-     <Compile Include="Assets\ThirdPersonCamera.cs" />
      <None Include="Assets\Palya.txt" />
      <None Include="Assets\Misc\Crate\Read me.txt" />
  <Reference Include="UnityEngine.UI">

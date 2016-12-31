@@ -14,8 +14,19 @@ public class BoxScript : MonoBehaviour {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         if (col.gameObject.name == "troll")
         {
-            rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
-            rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+            Vector3 hit = col.contacts[0].normal;
+            float angle = Vector3.Angle(hit, Vector3.up);
+
+            if (Mathf.Approximately(angle, 90))
+            {
+                // Sides
+                Vector3 cross = Vector3.Cross(Vector3.forward, hit);
+                if (cross.y > 0 || cross.y < 0)
+                    rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
+                else rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+            }
+            
+            
         }
         if (col.gameObject.name.Contains("Goal"))
         {

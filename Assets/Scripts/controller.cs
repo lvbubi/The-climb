@@ -2,37 +2,54 @@
 using System.Collections;
 
 public class controller : MonoBehaviour {
-    public float speed = 2;
-	// Use this for initialization
-	void Start () {
-	
-	}
+    private int a = 0;
+    public float moveSpeed = 0;
+    public float turnSpeed = 0;
+    // Use this for initialization
+    void Start() {
+
+    }
     void OnCollisionExit(Collision col)
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+        a = 0;
     }
-        // Update is called once per frame
-    void Update () {
+    void OnCollisionEnter(Collision col)
+    {
+        a = 1;
+    }
+    // Update is called once per frame
+    void Update() {
         moove();
     }
 
 
     void moove()
     {
-        float z = Input.GetAxis("Vertical");
-        float x = Input.GetAxis("Horizontal");
-
-        Vector3 offset = new Vector3(x, 0.0f, z) * speed;
-
-        transform.position += offset * Time.deltaTime;
-
-
-        GetComponent<Animator>().SetFloat(
-              "speed", offset.magnitude
-          );
-        if (x != 0 || z != 0)
+        if (Input.GetKey(KeyCode.W))
         {
-            transform.rotation = Quaternion.LookRotation(offset.normalized);
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            GetComponent<Animator>().SetFloat("speed", 10);
         }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
+            GetComponent<Animator>().SetFloat("speed", 10);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+            transform.Rotate(Vector3.up, -turnSpeed* Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.D))
+            transform.Rotate(Vector3.up, turnSpeed* Time.deltaTime);
+
+
+        if (Input.GetKeyUp(KeyCode.W))
+            GetComponent<Animator>().SetFloat("speed", 0);
+        if (Input.GetKeyUp(KeyCode.S))
+            GetComponent<Animator>().SetFloat("speed", 0);
+
     }
+
+
 }

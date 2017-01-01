@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class controller : MonoBehaviour {
-    private int a = 0;
     public float moveSpeed = 0;
     public float turnSpeed = 0;
     // Use this for initialization
@@ -12,11 +11,6 @@ public class controller : MonoBehaviour {
     void OnCollisionExit(Collision col)
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        a = 0;
-    }
-    void OnCollisionEnter(Collision col)
-    {
-        a = 1;
     }
     // Update is called once per frame
     void Update() {

@@ -30,7 +30,7 @@ public class BoxScript : MonoBehaviour {
         }
         if (col.gameObject.name.Contains("Goal"))
         {
-            if (Vector3.Distance(transform.position, col.transform.position) < 2.7)
+            if (Vector3.Distance(transform.position, col.transform.position) < 3)
                 BoxInGoal = true;
             else
                 BoxInGoal = false;

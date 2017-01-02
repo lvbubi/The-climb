@@ -12,7 +12,7 @@ public class BoxScript : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        if (col.gameObject.name == "troll")
+        if (col.gameObject.name == "troll")//Now the box cant moove diagonally
         {
             Vector3 hit = col.contacts[0].normal;
             float angle = Vector3.Angle(hit, Vector3.up);
@@ -28,20 +28,15 @@ public class BoxScript : MonoBehaviour {
             
             
         }
-        if (col.gameObject.name.Contains("Goal"))
-        {
-            if (Vector3.Distance(transform.position, col.transform.position) < 3)
-                BoxInGoal = true;
-            else
-                BoxInGoal = false;
-        }
+
     }
 
     void OnCollisionExit(Collision col)
     {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        
         if (col.gameObject.name == "troll")
         {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             rigidbody.constraints = RigidbodyConstraints.FreezeAll; 
         }
     }

@@ -47,7 +47,21 @@ public class LoadMap : MonoBehaviour {
 
         BoxCounter.text = "Boxes Back: " + BoxesBack;
         BoxesBack = 0;
+
+        ReloadGame();
     }
+
+    void ReloadGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            deleteGamebjects();
+            gamelevels.LoadLevel(CurrentLevelIdx);
+            boxes = GameObject.FindGameObjectsWithTag("Box");
+        }
+    }
+
+
 
     private void deleteGamebjects()
     {

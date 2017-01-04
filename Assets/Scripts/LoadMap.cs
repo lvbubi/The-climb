@@ -40,13 +40,18 @@ public class LoadMap : MonoBehaviour {
         }
         if (BoxesBack == 0)
         {
-            GameObject player = GameObject.FindWithTag("Player");
-            GameObject.Instantiate(ladder, new Vector3(0,10,0) , player.transform.rotation);
-            deleteGamebjects();
-             gamelevels.LoadLevel(++CurrentLevelIdx);
-             //átvezetés másik scenera
-             boxes = GameObject.FindGameObjectsWithTag("Box");
+           
+            if(GameObject.Find("SteelLadder B(Clone)")==null)//if theres no ladder create it
+                Instantiate(ladder, new Vector3(0,10,0) , GameObject.FindWithTag("Player").transform.rotation);
 
+            if (!GameObject.Find("SteelLadder B(Clone)").GetComponent<LadderAnimation>().enabled)//if the ladder script finished load new level
+            {
+                deleteGamebjects();
+                gamelevels.LoadLevel(++CurrentLevelIdx);
+                //átvezetés másik scenera
+                boxes = GameObject.FindGameObjectsWithTag("Box");
+
+            }
         }
 
         BoxCounter.text = "Boxes Back: " + BoxesBack;
@@ -73,8 +78,9 @@ public class LoadMap : MonoBehaviour {
         foreach(GameObject gameobject in AllGameObjects)
         {
             if (gameobject.tag == "Wall" || gameobject.tag == "Box" || gameobject.tag == "Goal" || gameobject.tag == "Floor")
-                GameObject.DestroyImmediate(gameobject);
+                DestroyImmediate(gameobject);
         }
+        DestroyImmediate(GameObject.Find("SteelLadder B(Clone)"));
     }
 }
 

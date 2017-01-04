@@ -9,6 +9,7 @@ public class LoadMap : MonoBehaviour {
     public GameObject floor;
     public GameObject goal;
     public GameObject wall;
+    public GameObject ladder;
     public Text BoxCounter;
 
     private GameLevels gamelevels;
@@ -39,10 +40,13 @@ public class LoadMap : MonoBehaviour {
         }
         if (BoxesBack == 0)
         {
+            GameObject player = GameObject.FindWithTag("Player");
+            GameObject.Instantiate(ladder, new Vector3(0,10,0) , player.transform.rotation);
             deleteGamebjects();
-            gamelevels.LoadLevel(++CurrentLevelIdx);
-            //átvezetés másik scenera
-            boxes = GameObject.FindGameObjectsWithTag("Box");
+             gamelevels.LoadLevel(++CurrentLevelIdx);
+             //átvezetés másik scenera
+             boxes = GameObject.FindGameObjectsWithTag("Box");
+
         }
 
         BoxCounter.text = "Boxes Back: " + BoxesBack;

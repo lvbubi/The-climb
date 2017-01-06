@@ -52,7 +52,9 @@
      <Compile Include="Assets\Scripts\Camera\LookAtCamera.cs" />
      <Compile Include="Assets\Scripts\Camera\ThirdPersonCamera.cs" />
      <Compile Include="Assets\Scripts\Camera\TopViewCamera.cs" />
+     <Compile Include="Assets\Scripts\EndGame.cs" />
      <Compile Include="Assets\Scripts\GoalTrigger.cs" />
+     <Compile Include="Assets\Scripts\LadderAnimation.cs" />
      <Compile Include="Assets\Scripts\LoadMap.cs" />
      <Compile Include="Assets\Scripts\controller.cs" />
      <Compile Include="Assets\Scripts\menuController.cs" />

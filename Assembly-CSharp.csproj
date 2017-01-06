@@ -45,17 +45,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Camera\DungeonCamera.cs" />
-     <Compile Include="Assets\Camera\FollowCamera.cs" />
-     <Compile Include="Assets\Camera\LookAtCamera.cs" />
-     <Compile Include="Assets\Camera\MouseAimCamera.cs" />
-     <Compile Include="Assets\Camera\ThirdPersonCamera.cs" />
-     <Compile Include="Assets\CameraController.cs" />
-     <Compile Include="Assets\Map\BoxScript.cs" />
+     <Compile Include="Assets\Scripts\BoxScript.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Camera\DungeonCamera.cs" />
+     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
+     <Compile Include="Assets\Scripts\Camera\LookAtCamera.cs" />
+     <Compile Include="Assets\Scripts\Camera\ThirdPersonCamera.cs" />
+     <Compile Include="Assets\Scripts\Camera\TopViewCamera.cs" />
+     <Compile Include="Assets\Scripts\GoalTrigger.cs" />
      <Compile Include="Assets\Scripts\LoadMap.cs" />
      <Compile Include="Assets\Scripts\controller.cs" />
      <Compile Include="Assets\Scripts\menuController.cs" />
-     <None Include="Assets\Palya.txt" />
      <None Include="Assets\Misc\Crate\Read me.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

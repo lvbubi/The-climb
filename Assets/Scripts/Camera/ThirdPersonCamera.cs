@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ThirdPersonCamera : MonoBehaviour {
 
-    private const float Y_ANGLE_MIN = 0.0f;
-    private const float Y_ANGLE_MAX = 65.0f;
+    private const float Y_ANGLE_MIN = 30.0f;
+    private const float Y_ANGLE_MAX = 75.0f;
 
     public Transform lookAt;
     public Transform camTransform;
@@ -20,9 +20,11 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     private void Update()
     {
-        currentX += Input.GetAxis("Mouse X");
-        currentY += Input.GetAxis("Mouse Y");
-
+        if (Input.GetMouseButton(1))
+        {
+            currentX += 1.5f*Input.GetAxis("Mouse X");
+            currentY += -1*Input.GetAxis("Mouse Y");
+        }
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN,Y_ANGLE_MAX);
     }
 

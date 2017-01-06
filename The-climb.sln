@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{02776BC4-5678-4BE3-B627-37FCE81846A5}") = "The-climb", "Assembly-CSharp.csproj", "{31324EBD-2E95-69AB-B1F5-F15691062BA7}"
 EndProject
+Project("{02776BC4-5678-4BE3-B627-37FCE81846A5}") = "The-climb", "Assembly-UnityScript.unityproj", "{91A7D1A6-4211-DF5F-5BC0-17ABDBD2AFE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{31324EBD-2E95-69AB-B1F5-F15691062BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31324EBD-2E95-69AB-B1F5-F15691062BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31324EBD-2E95-69AB-B1F5-F15691062BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A7D1A6-4211-DF5F-5BC0-17ABDBD2AFE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A7D1A6-4211-DF5F-5BC0-17ABDBD2AFE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A7D1A6-4211-DF5F-5BC0-17ABDBD2AFE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A7D1A6-4211-DF5F-5BC0-17ABDBD2AFE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

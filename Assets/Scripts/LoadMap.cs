@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
@@ -109,7 +110,7 @@ class GameLevels
         if (idx < CountOfLevels)
             levels[idx].GenerateMap();
         else
-            Debug.Log("JÁTÉK VÉGE");
+			SceneManager.LoadScene ("GameOver");
     }
 }
 

@@ -13,6 +13,7 @@ public class LoadMap : MonoBehaviour {
     public GameObject ladder;
     public Text BoxCounter;
 
+    private GameObject MainCam;
     private GameLevels gamelevels;
     private GameObject[] boxes;
     private int BoxesBack = 0;
@@ -24,7 +25,7 @@ public class LoadMap : MonoBehaviour {
         PathOfLevels.Add("Palya.txt");
         PathOfLevels.Add("Palya2.txt");
         //add path for games
-
+        MainCam = GameObject.Find("Main Camera");
         gamelevels = new GameLevels(PathOfLevels, floor, wall, box, goal);
 
         gamelevels.LoadLevel(CurrentLevelIdx);
@@ -41,19 +42,20 @@ public class LoadMap : MonoBehaviour {
         }
         if (BoxesBack == 0)
         {
-           
-            if(GameObject.Find("SteelLadder B(Clone)")==null)//if theres no ladder create it
-                Instantiate(ladder, new Vector3(0,10,0) , GameObject.FindWithTag("Player").transform.rotation);
+                MainCam.GetComponent<CameraController>().enabled = false;
+            MainCam.GetComponent<ThirdPersonCamera>().enabled = false;
+            MainCam.GetComponent<NewLevelCamera>().enabled = true;
 
-            if (!GameObject.Find("SteelLadder B(Clone)").GetComponent<LadderAnimation>().enabled)//if the ladder script finished load new level
+            if (MainCam.GetComponent<NewLevelCamera>().timeleft < 5)
             {
                 deleteGamebjects();
                 gamelevels.LoadLevel(++CurrentLevelIdx);
                 //átvezetés másik scenera
                 boxes = GameObject.FindGameObjectsWithTag("Box");
-
             }
         }
+
+
 
         BoxCounter.text = "Boxes Back: " + BoxesBack;
         BoxesBack = 0;

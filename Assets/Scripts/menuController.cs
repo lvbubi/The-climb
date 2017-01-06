@@ -7,12 +7,14 @@ public class menuController : MonoBehaviour {
 
 	public Button Play;
 	public Button Exit;
+	public Button Credits;
 
 	// Use this for initialization
 	void Start () {
 	
 		Play = Play.GetComponent<Button> ();
 		Exit = Exit.GetComponent<Button> ();
+		Credits = Credits.GetComponent<Button> ();
 
 	}
 	
@@ -29,5 +31,10 @@ public class menuController : MonoBehaviour {
 	public void ExitGame()
 	{
 		Application.Quit();
+	}
+
+	public void RollCredits()
+	{
+		SceneManager.LoadScene ("GameOver");
 	}
 }

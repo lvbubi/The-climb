@@ -11,6 +11,7 @@ public class LoadMap : MonoBehaviour {
     public GameObject goal;
     public GameObject wall;
     public GameObject ladder;
+    public GameObject wallWithoutLight;
     public Text BoxCounter;
 
     private GameObject MainCam;
@@ -26,7 +27,7 @@ public class LoadMap : MonoBehaviour {
         PathOfLevels.Add("Palya2.txt");
         //add path for games
         MainCam = GameObject.Find("Main Camera");
-        gamelevels = new GameLevels(PathOfLevels, floor, wall, box, goal);
+        gamelevels = new GameLevels(PathOfLevels, floor, wall, box, goal, wallWithoutLight);
 
         gamelevels.LoadLevel(CurrentLevelIdx);
         boxes = GameObject.FindGameObjectsWithTag("Box");
@@ -91,7 +92,7 @@ class GameLevels
 {
     private List<Level> levels = new List<Level>();
     private int CountOfLevels = 0;
-    public GameLevels(List<string> paths, GameObject floor, GameObject wall, GameObject box, GameObject goal)
+    public GameLevels(List<string> paths, GameObject floor, GameObject wall, GameObject box, GameObject goal, GameObject wall2=null)
     {
         foreach (string path in paths)
         {
@@ -109,7 +110,7 @@ class GameLevels
                 }
                 i++;
             }
-            levels.Add(new Level(result, i, j, floor, wall, box, goal));
+            levels.Add(new Level(result, i, j, floor, wall, box, goal,wall2));
             CountOfLevels++;
         }
     }
@@ -124,7 +125,7 @@ class GameLevels
 
 class Level
 {
-    public Level(int[,] level, int rows, int cols, GameObject floor, GameObject wall, GameObject box, GameObject goal)
+    public Level(int[,] level, int rows, int cols, GameObject floor, GameObject wall, GameObject box, GameObject goal, GameObject wall2=null)
     {
         this.level = level;
         this.rows = rows;
@@ -133,11 +134,12 @@ class Level
         this.box = box;
         this.goal = goal;
         this.wall = wall;
+        this.wall2 = wall2;
     }
     private int[,] level = new int[100, 100];
     private int rows;
     private int cols;
-    private GameObject floor, wall, box, goal;
+    private GameObject floor, wall, box, goal,wall2;
     public void GenerateMap()
     {
         int a, k;
@@ -151,7 +153,10 @@ class Level
                         GameObject.Instantiate(floor, new Vector3(5 * a, -2.42f, 5 * k), new Quaternion(0, 0, 0, 0));
                         break;
                     case 1:
-                        GameObject.Instantiate(wall, new Vector3(5 * a, 0, 5 * k), new Quaternion(0, 0, 0, 0));
+                        if((k==0 && a%2==1) || ((k==cols-1) && a%2==1 ) || k%2==0 && a==rows-1 || k%2 ==0 && a==0)
+                            GameObject.Instantiate(wall, new Vector3(5 * a, 0, 5 * k), new Quaternion(0, 0, 0, 0));
+                        else
+                            GameObject.Instantiate(wall2, new Vector3(5 * a, 0, 5 * k), new Quaternion(0, 0, 0, 0));
                         break;
                     case 2:
                         GameObject.Instantiate(box, new Vector3(5 * a, 0.13f, 5 * k), new Quaternion(0, 0, 0, 0));

@@ -14,11 +14,14 @@ public class TopViewCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            currentX += Input.GetAxis("Mouse X");
-            currentZ += Input.GetAxis("Mouse Y");
-            MainCam.transform.position = new Vector3(currentX, currentY, currentZ);
+        if (Input.GetMouseButton(1))
+        {
+            currentX += -Input.GetAxis("Mouse X");
+            currentZ += -Input.GetAxis("Mouse Y");
+        }
+        MainCam.transform.position = new Vector3(currentX, currentY, currentZ);
             MainCam.transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
-          
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             currentX = 16.25f;

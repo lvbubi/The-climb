@@ -15,12 +15,15 @@ public class CameraController : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            a++;
+        }
+        if (a % 2 == 1) { 
             currentrot = MainCam.transform.rotation;
             currentpos = MainCam.transform.position;
             GetComponent<ThirdPersonCamera>().enabled = false;
             GetComponent<TopViewCamera>().enabled = true;
         }
-        if (Input.GetKeyUp(KeyCode.Tab))
+        else 
         {
             MainCam.transform.position = currentpos;
             MainCam.transform.rotation = currentrot;

@@ -15,7 +15,6 @@ public class ThirdPersonCamera : MonoBehaviour {
     private void Start()
     {
         camTransform = transform;
-
     }
 
     private void Update()
@@ -34,6 +33,17 @@ public class ThirdPersonCamera : MonoBehaviour {
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
         camTransform.position = lookAt.position + rotation * dir;
         camTransform.LookAt(lookAt.position);
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            distance--;
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            distance++;
+        }
+
     }
 
 }

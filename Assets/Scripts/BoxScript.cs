@@ -26,7 +26,7 @@ public class BoxScript : MonoBehaviour {
 
     void Update()
     {
-        if (collided && Input.GetKey(KeyCode.E))
+        if (collided && Input.GetKey(KeyCode.Space))
         {
             Vector3 hit = CollidedTroll.contacts[0].normal;
             float angle = Vector3.Angle(hit, Vector3.up);

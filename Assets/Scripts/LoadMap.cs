@@ -13,7 +13,7 @@ public class LoadMap : MonoBehaviour {
     public GameObject ladder;
     public GameObject wallWithoutLight;
     public Text BoxCounter;
-
+    public Text CurrentLevelText;
     private GameObject MainCam;
     private GameLevels gamelevels;
     private GameObject[] boxes;
@@ -31,6 +31,8 @@ public class LoadMap : MonoBehaviour {
 
         gamelevels.LoadLevel(CurrentLevelIdx);
         boxes = GameObject.FindGameObjectsWithTag("Box");
+
+        CurrentLevelText.text = "Current Level: " + (CurrentLevelIdx + 1);
     }
 	
 	// Update is called once per frame
@@ -43,16 +45,18 @@ public class LoadMap : MonoBehaviour {
         }
         if (BoxesBack == 0)
         {
-                MainCam.GetComponent<CameraController>().enabled = false;
+            MainCam.GetComponent<CameraController>().enabled = false;
             MainCam.GetComponent<ThirdPersonCamera>().enabled = false;
             MainCam.GetComponent<NewLevelCamera>().enabled = true;
 
             if (MainCam.GetComponent<NewLevelCamera>().timeleft < 5)
             {
                 deleteGamebjects();
+                new WaitForSeconds(1);
                 gamelevels.LoadLevel(++CurrentLevelIdx);
                 //átvezetés másik scenera
                 boxes = GameObject.FindGameObjectsWithTag("Box");
+                CurrentLevelText.text = "Current Level: " + (CurrentLevelIdx + 1);
             }
         }
 

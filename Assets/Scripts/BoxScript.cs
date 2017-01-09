@@ -14,12 +14,12 @@ public class BoxScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        if (col.gameObject.name == "troll")//Now the box cant moove diagonally
+        //GetComponent<Rigidbody>().velocity = Vector3.zero;
+        if (col.gameObject.name == "troll" && col.collider.ToString().Contains("Box"))//Now the box cant moove diagonally
         {
+            
             collided = true;
             CollidedTroll = col;
-            
         }
 
     }
@@ -34,8 +34,8 @@ public class BoxScript : MonoBehaviour {
             if (Mathf.Approximately(angle, 90))
             {
                 // Sides
-                
-                    Vector3 cross = Vector3.Cross(Vector3.forward, hit);
+                CollidedTroll.rigidbody.mass = 2;
+                Vector3 cross = Vector3.Cross(Vector3.forward, hit);
                     if (cross.y > 0 || cross.y < 0)
                         rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
                     else rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
@@ -45,16 +45,17 @@ public class BoxScript : MonoBehaviour {
         }
         else
         {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //GetComponent<Rigidbody>().velocity = Vector3.zero;
             rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
     void OnCollisionExit(Collision col)
     {
-        if (col.gameObject.name == "troll")
+        if (col.gameObject.name == "troll" && col.collider.ToString().Contains("Box"))
         {
             collided = false;
+            CollidedTroll.rigidbody.mass = 0.01f;
         }
     }
 

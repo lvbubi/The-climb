@@ -4,11 +4,11 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class menuController : MonoBehaviour {
-
+    public bool load = false;
+    public bool exit = false;
 	public Button Play;
 	public Button Exit;
 	public Button Credits;
-
 	// Use this for initialization
 	void Start () {
 	
@@ -23,13 +23,23 @@ public class menuController : MonoBehaviour {
 
 	}
 
-	public void StartGame()
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
+    public bool IsContinue()
+    {
+        return load;
+    }
+    public void StartGame()
 	{
 		SceneManager.LoadScene ("main");
 	}
 
 	public void ExitGame()
 	{
+        exit = true;
 		Application.Quit();
 	}
 
@@ -37,4 +47,10 @@ public class menuController : MonoBehaviour {
 	{
 		SceneManager.LoadScene ("GameOver");
 	}
+
+    public void ContinueGame()
+    {
+        SceneManager.LoadScene("main");
+        load = true;
+    }
 }

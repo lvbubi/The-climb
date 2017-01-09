@@ -19,7 +19,10 @@ public class LoadMap : MonoBehaviour {
     private GameObject[] boxes;
     private int BoxesBack = 0;
     private int CurrentLevelIdx = 0;
-    
+    private menuController scene1;
+
+
+
     void Start () {
         List<string> PathOfLevels = new List<string>();
         PathOfLevels.Add("Palya0.txt");
@@ -28,11 +31,24 @@ public class LoadMap : MonoBehaviour {
         //add path for games
         MainCam = GameObject.Find("Main Camera");
         gamelevels = new GameLevels(PathOfLevels, floor, wall, box, goal, wallWithoutLight);
+        scene1 = GameObject.Find("Menu").GetComponent<menuController>();
+
+
+        if (scene1.IsContinue())
+        {
+            LoadContinuedLevel();
+        }
+
 
         gamelevels.LoadLevel(CurrentLevelIdx);
         boxes = GameObject.FindGameObjectsWithTag("Box");
 
         CurrentLevelText.text = "Current Level: " + (CurrentLevelIdx + 1);
+
+
+        
+        
+        scene1.GetComponent<Canvas>().enabled = false;
     }
 	
 	// Update is called once per frame
@@ -66,11 +82,22 @@ public class LoadMap : MonoBehaviour {
         BoxesBack = 0;
 
         ReloadGame();
+        ShowMainMenu();
+        SaveWhenQuit();
     }
 
-    void ReloadGame()
+    void SaveWhenQuit()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (scene1.exit)
+        {
+            System.IO.File.WriteAllText("SaveGame.txt", CurrentLevelIdx.ToString());
+            scene1.exit = false;
+        }
+    }
+
+        void ReloadGame()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             deleteGamebjects();
             gamelevels.LoadLevel(CurrentLevelIdx);
@@ -78,6 +105,17 @@ public class LoadMap : MonoBehaviour {
         }
     }
 
+    void ShowMainMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            scene1.GetComponent<Canvas>().enabled = !scene1.GetComponent<Canvas>().enabled;
+    }
+
+    private void LoadContinuedLevel()
+    {
+        string input = File.ReadAllText(@"SaveGame.txt");
+        CurrentLevelIdx = int.Parse(input.Trim());
+    }
 
 
     private void deleteGamebjects()

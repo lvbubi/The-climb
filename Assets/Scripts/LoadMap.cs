@@ -28,6 +28,9 @@ public class LoadMap : MonoBehaviour {
         PathOfLevels.Add("Palya0.txt");
         PathOfLevels.Add("Palya.txt");
         PathOfLevels.Add("Palya2.txt");
+		PathOfLevels.Add("Palya3.txt");
+		PathOfLevels.Add("Palya4.txt");
+		PathOfLevels.Add("Palya5.txt");
         //add path for games
         MainCam = GameObject.Find("Main Camera");
         gamelevels = new GameLevels(PathOfLevels, floor, wall, box, goal, wallWithoutLight);

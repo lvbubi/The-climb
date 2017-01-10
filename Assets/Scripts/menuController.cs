@@ -9,12 +9,14 @@ public class menuController : MonoBehaviour {
 	public Button Play;
 	public Button Exit;
 	public Button Credits;
+	public Button Continue;
 	// Use this for initialization
 	void Start () {
 	
 		Play = Play.GetComponent<Button> ();
 		Exit = Exit.GetComponent<Button> ();
 		Credits = Credits.GetComponent<Button> ();
+		Continue = Continue.GetComponent<Button> ();
 
 	}
 	

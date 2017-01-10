@@ -56,7 +56,9 @@ public class BoxScript : MonoBehaviour {
         {
             collided = false;
             CollidedTroll.rigidbody.mass = 0.01f;
+            transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z));
         }
+        
     }
 
 }

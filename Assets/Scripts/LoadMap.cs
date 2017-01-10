@@ -118,6 +118,7 @@ public class LoadMap : MonoBehaviour {
     {
         string input = File.ReadAllText(@"SaveGame.txt");
         CurrentLevelIdx = int.Parse(input.Trim());
+        scene1.load = false;
     }
 
 
